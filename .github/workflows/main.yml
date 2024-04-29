@@ -18,11 +18,11 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-2 # Modify this to your desired AWS region
+        aws-region: ap-south-1 
 
     - name: Deploy Python Lambda Function
       run: |
         # Constants
         LAMBDA_FUNCTION_NAME=lambda_function_name_143
         # Update Lambda function code
-        aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME --zip-file fileb://lambdapythoncode.zip
+        aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME  --zip-file fileb://lambdapythoncode.zip
