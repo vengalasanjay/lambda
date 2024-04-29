@@ -1,0 +1,31 @@
+name: Deploy Python Lambda
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'mypythoncode.py' # Specify the path to your Python file
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup AWS CLI
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2 # Modify this to your desired AWS region
+
+    - name: Deploy Python Lambda Function
+      run: |
+        # Constants
+        LAMBDA_FUNCTION_NAME=lambda_function_name_143
+        PYTHON_FILE="mypythoncode.py"
+        # Update Lambda function code
+        aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME --zip-file fileb://$PYTHON_FILE
