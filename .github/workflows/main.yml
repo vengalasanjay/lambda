@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'mypythoncode.py' # Specify the path to your Python file
 
 jobs:
   deploy:
@@ -26,6 +24,5 @@ jobs:
       run: |
         # Constants
         LAMBDA_FUNCTION_NAME=lambda_function_name_143
-        PYTHON_FILE="mypythoncode.py"
         # Update Lambda function code
-        aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME --zip-file fileb://$PYTHON_FILE
+        aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME --zip-file fileb://lambdapythoncode.zip
